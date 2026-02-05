@@ -1,18 +1,19 @@
 import streamlit as st
-from langchain.memory import ConversationBufferMemory
+from langchain_classic.memory import ConversationBufferMemory
 
 from utils import get_chat_response
 
-st.title("💬 克隆ChatGPT")
+st.title("🤪🗨️ clone ChatGPT")
 
 with st.sidebar:
-    openai_api_key = st.text_input("请输入OpenAI API Key：", type="password")
-    st.markdown("[获取OpenAI API key](https://platform.openai.com/account/api-keys)")
+    openai_api_key = st.text_input("请输入OpenAI API Key:", type="password")
+    st.markdown("[获取OpenAI API key](https://platform.openai.com/account)")
 
+# memory = ConversationBufferMemory(return_messages=True)
 if "memory" not in st.session_state:
     st.session_state["memory"] = ConversationBufferMemory(return_messages=True)
     st.session_state["messages"] = [{"role": "ai",
-                                     "content": "你好，我是你的AI助手，有什么可以帮你的吗？"}]
+                                     "content": "你好，我是你的AI助手🤩，有什么可以帮你的吗"}]
 
 for message in st.session_state["messages"]:
     st.chat_message(message["role"]).write(message["content"])
